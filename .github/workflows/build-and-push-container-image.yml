@@ -41,7 +41,7 @@ jobs:
                 tagVersion=${{ steps.version.outputs.VERSION }}
                 tags="octopusdeploy/nfs-server:$tagVersion,docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion,octopusdeploy/nfs-server:latest,docker.packages.octopushq.com/octopusdeploy/nfs-server:latest";
             else
-                # git describe --tags produces a value matching <tag>-<commits since tag>-<8 char commit hash>
+                : # git describe --tags produces a value matching <tag>-<commits since tag>-<8 char commit hash>
                 tagVersion=$(git describe --tags)
                 tags="docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion";
             fi
