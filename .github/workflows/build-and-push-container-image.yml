@@ -45,7 +45,7 @@ jobs:
                 tags="docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion";
             fi
             echo "TAGS=$tags" >> $GITHUB_OUTPUT;
-            echo "Publishing the image with the following tags: $tags";
+            echo "TAGS=$tags";
         id: tags
 
       - name: Set up Docker Buildx
