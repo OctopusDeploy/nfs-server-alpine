@@ -31,10 +31,13 @@ jobs:
         run: |
             if [ ${{ steps.isVersioningCommit.outputs.isVersioningCommit }} ]; then
                 tagVersion=${{ steps.version.outputs.VERSION }}
+                tags="octopusdeploy/nfs-server:$tagVersion,octopusdeploy/nfs-server:latest";
             else
                 tagVersion=$(git describe --tags)
+                tags="octopusdeploy/nfs-server:$tagVersion,docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion,octopusdeploy/nfs-server:latest,docker.packages.octopushq.com/octopusdeploy/nfs-server:latest";
             fi
-            echo "TAGS=octopusdeploy/nfs-server:$tagVersion,docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion,octopusdeploy/nfs-server:latest,docker.packages.octopushq.com/octopusdeploy/nfs-server:latest";
+            echo "TAGS=$tags" >> $GITHUB_OUTPUT;
+            echo "Publishing the image with the following tags: $tags";
         id: tags
 
       - name: Set up Docker Buildx
@@ -54,10 +57,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ steps.tags.outputs.TAGS }}
-          platforms: linux/amd64,linux/arm64
+    # TODO: Uncomment this out once we've verified we are creating the right tags
+    #   - name: Build and push
+    #     uses: docker/build-push-action@v5
+    #     with:
+    #       push: true
+    #       tags: ${{ steps.tags.outputs.TAGS }}
+    #       platforms: linux/amd64,linux/arm64
 
