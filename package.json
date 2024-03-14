@@ -15,9 +15,10 @@
         "url": "git+https://github.com/OctopusDeploy/nfs-server-alpine.git"
     },
     "keywords": [
-        "agent",
+        "nfs",
         "kubernetes",
-        "helm",
+        "container",
+        "docker",
         "octopus"
     ],
     "author": "Octopus Deploy",
