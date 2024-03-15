@@ -17,6 +17,7 @@ jobs:
       - name: Is Versioning Commit
         run: |
             isVersioningCommit=${{ startsWith(github.event.commits[0].message, 'Version NFS Server Chart') }};
+            declare -p isVersioningCommit;
             echo "IS_VERSIONING_COMMIT=$isVersioningCommit" >> $GITHUB_OUTPUT;
             echo "IS_VERSIONING_COMMIT=$isVersioningCommit";
         id: isVersioningCommit
