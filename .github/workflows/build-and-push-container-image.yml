@@ -29,7 +29,7 @@ jobs:
             echo "VERSION=$version";
         id: version
 
-      - if: ${{ steps.isVersioningCommit.outputs.IS_VERSIONING_COMMIT }} == 'false'
+      - if: ${{ steps.isVersioningCommit.outputs.IS_VERSIONING_COMMIT }} == 'true'
         name: Tag Commit
         uses: laputansoft/github-tag-action@v4.6
         with:
