@@ -32,7 +32,7 @@ jobs:
       - if: steps.isVersioningCommit.outputs.isVersioningCommit == 'false'
         name: Tag Commit
         run: |
-            git tag ${{ steps.version.outputs.version }} $(git rev-parse HEAD)
+            git tag -f ${{ steps.version.outputs.version }} $(git rev-parse HEAD)
             git push origin refs/tags/${{ steps.version.outputs.version }}
 
       - name: Get Tags
