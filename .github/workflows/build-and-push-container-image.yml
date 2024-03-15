@@ -18,36 +18,36 @@ jobs:
         run: |
             isVersioningCommit=${{ startsWith(github.event.commits[0].message, 'Version NFS Server Chart') }};
             declare -p isVersioningCommit;
-            echo "value=$isVersioningCommit" >> $GITHUB_OUTPUT;
-            echo "value=$isVersioningCommit";
+            echo "isVersioningCommit=$isVersioningCommit" >> $GITHUB_OUTPUT;
+            echo "isVersioningCommit=$isVersioningCommit";
         id: isVersioningCommit
 
       - name: Get Version
         run: |
             version=$(jq -r .version package.json);
-            echo "value=$version" >> $GITHUB_OUTPUT;
-            echo "value=$version";
+            echo "version=$version" >> $GITHUB_OUTPUT;
+            echo "version=$version";
         id: version
 
-      - if: steps.isVersioningCommit.outputs.value == 'true'
+      - if: steps.isVersioningCommit.outputs.isVersioningCommit == 'true'
         name: Tag Commit
         uses: laputansoft/github-tag-action@v4.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.version.outputs.value }}
+          tag: ${{ steps.version.outputs.version }}
 
       - name: Get Tags
         run: |
-            if ${{ steps.isVersioningCommit.outputs.value }}; then
-                tagVersion=${{ steps.version.outputs.value }}
+            if ${{ steps.isVersioningCommit.outputs.isVersioningCommit }}; then
+                tagVersion=${{ steps.version.outputs.version }}
                 tags="octopusdeploy/nfs-server:$tagVersion,docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion,octopusdeploy/nfs-server:latest,docker.packages.octopushq.com/octopusdeploy/nfs-server:latest";
             else
                 : # git describe --tags produces a value matching <tag>-<commits since tag>-<8 char commit hash>
                 tagVersion=$(git describe --tags)
                 tags="docker.packages.octopushq.com/octopusdeploy/nfs-server:$tagVersion";
             fi
-            echo "value=$tags" >> $GITHUB_OUTPUT;
-            echo "value=$tags";
+            echo "tags=$tags" >> $GITHUB_OUTPUT;
+            echo "tags=$tags";
         id: tags
 
       - name: Set up Docker Buildx
@@ -72,6 +72,6 @@ jobs:
     #     uses: docker/build-push-action@v5
     #     with:
     #       push: true
-    #       tags: ${{ steps.tags.outputs.value }}
+    #       tags: ${{ steps.tags.outputs.tags }}
     #       platforms: linux/amd64,linux/arm64
 
