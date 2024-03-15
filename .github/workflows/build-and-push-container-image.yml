@@ -3,7 +3,7 @@ name: Build and Push Container Image
 on:
   push:
     branches: 
-    - scme/tag-commit-test
+    - master
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
             echo "version=$version";
         id: version
 
-      - if: steps.isVersioningCommit.outputs.isVersioningCommit == 'false'
+      - if: steps.isVersioningCommit.outputs.isVersioningCommit == 'true'
         name: Tag Commit
         run: |
             git tag -f ${{ steps.version.outputs.version }} $(git rev-parse HEAD)
