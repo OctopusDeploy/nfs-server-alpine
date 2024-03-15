@@ -3,7 +3,7 @@ name: Build and Push Container Image
 on:
   push:
     branches: 
-    - scme/fix-tag-commit-action-2
+    - master
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
             echo "value=$version";
         id: version
 
-      - if: steps.isVersioningCommit.outputs.value == 'false'
+      - if: steps.isVersioningCommit.outputs.value == 'true'
         name: Tag Commit
         uses: laputansoft/github-tag-action@v4.6
         with:
