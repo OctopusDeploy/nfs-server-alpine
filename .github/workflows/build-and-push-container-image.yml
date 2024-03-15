@@ -33,6 +33,7 @@ jobs:
         name: Tag Commit
         run: |
             git tag -l ${{ steps.version.outputs.version }}
+            git push --follow-tags
 
       - name: Get Tags
         run: |
