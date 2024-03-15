@@ -32,8 +32,8 @@ jobs:
       - if: steps.isVersioningCommit.outputs.isVersioningCommit == 'false'
         name: Tag Commit
         run: |
-            git tag -l ${{ steps.version.outputs.version }}
-            git push --follow-tags
+            git tag ${{ steps.version.outputs.version }} $(git rev-parse HEAD)
+            git push origin refs/tags/${{ steps.version.outputs.version }}
 
       - name: Get Tags
         run: |
