@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 0.0.4
+
+### Patch Changes
+
+- c2445fa: Change the Commit Tag action to a script so it's simpler
+
 ## 0.0.3
 
 ### Patch Changes
