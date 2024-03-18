@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 1.0.1
+
+### Patch Changes
+
+- cba92b9: Add GRACE_TIME as a configurable environment variable
+
 ## 1.0.0
 
 ### Major Changes
