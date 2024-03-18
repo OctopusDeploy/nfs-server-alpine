@@ -65,12 +65,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
-
-    # TODO: Uncomment this out once we've verified we are creating the right tags
-    #   - name: Build and push
-    #     uses: docker/build-push-action@v5
-    #     with:
-    #       push: true
-    #       tags: ${{ steps.tags.outputs.tags }}
-    #       platforms: linux/amd64,linux/arm64
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ steps.tags.outputs.tags }}
+          platforms: linux/amd64,linux/arm64
 
