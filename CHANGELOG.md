@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 1.0.0
+
+### Major Changes
+
+- 82a1169: First versioned release of the nfs server
+
 ## 0.0.4
 
 ### Patch Changes
