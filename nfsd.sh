@@ -77,6 +77,13 @@ else
   /bin/sed -i "s/{{SYNC}}/sync/g" /etc/exports
 fi
 
+# Grace time is the time after the NFS starts before file locks can be accessed 
+# and new file writes are process to allow existing mounts to resync.
+# We default to 10 seconds, the global default is 90 seconds.
+if [ -z "${GRACE_TIME}" ]; then
+    GRACE_TIME=10
+fi
+
 # Partially set 'unofficial Bash Strict Mode' as described here: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 # We don't set -e because the pidof command returns an exit code of 1 when the specified process is not found
 # We expect this at times and don't want the script to be terminated when it occurs
@@ -108,7 +115,7 @@ while true; do
     # /usr/sbin/rpc.statd
 
     echo "Starting NFS in the background..."
-    /usr/sbin/rpc.nfsd --debug 8 --no-udp --no-nfs-version 3
+    /usr/sbin/rpc.nfsd --debug 8 --grace-time "${GRACE_TIME}" --no-udp --no-nfs-version 3
     echo "Exporting File System..."
     if /usr/sbin/exportfs -rv; then
       /usr/sbin/exportfs
