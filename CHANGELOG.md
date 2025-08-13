@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 1.1.0
+
+### Minor Changes
+
+- 5ac0669: Update to Alpine 3.22.1
+
 ## 1.0.1
 
 ### Patch Changes
