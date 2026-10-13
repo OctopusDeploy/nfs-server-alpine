@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 1.1.2
+
+### Patch Changes
+
+- 1c219ce: Bump to Alpine 3.22.6 base
+
 ## 1.1.1
 
 ### Patch Changes
