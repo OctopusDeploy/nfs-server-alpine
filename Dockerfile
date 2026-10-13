@@ -1,4 +1,4 @@
-FROM alpine:3.22.2
+FROM alpine:3.22.6
 
 LABEL MAINTAINER="Octopus Deploy <support@octopus.com>"
 LABEL SOURCE="https://github.com/OctopusDeploy/nfs-server-alpine"
