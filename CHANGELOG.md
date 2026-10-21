@@ -1,5 +1,11 @@
 # nfs-server-alpine
 
+## 1.1.3
+
+### Patch Changes
+
+- d78a819: Fix wording in the README Dockerfile section
+
 ## 1.1.2
 
 ### Patch Changes
