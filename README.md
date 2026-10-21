@@ -277,7 +277,7 @@ Startup successful.
 
 ### Dockerfile
 
-The Dockerfile used to create this image is available at the root of the file system on build.
+The Dockerfile used to create this image is available at the root of the file system on the build.
 
 ```
 FROM alpine:latest
